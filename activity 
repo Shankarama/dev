@@ -27,9 +27,11 @@ for col in df.select_dtypes(include='object').columns:
     df[col] = le.fit_transform(df[col])
     label_encoders[col] = le
 
+
 target_col = 'Outcome'
 X = df.drop(target_col, axis=1)
 y = df[target_col]
+
 
 feature_names = X.columns.tolist()
 
@@ -62,6 +64,7 @@ user_input_new = {
     'DiabetesPedigreeFunction': float(input('DiabetesPedigreeFunction: ')),
     'Age': float(input('Age: '))
 }
+
 
 full_user_input = {col: user_input_new.get(col, 0.0) for col in feature_names}
 user_df_new = pd.DataFrame([full_user_input])[feature_names]
